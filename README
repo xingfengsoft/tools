@@ -1,0 +1,29 @@
+usage:
+
+./show-tcp.py
+根据机器的netstat信息，生成拓扑连接图
+
+举例：在linux server: abc-vm上执行./show-tcp.py
+输出：
+192.168.2.62-->|9056x30|abc-vm
+abc-vm-->|80x20|192.168.2.89
+abc-vm-->|9092x1|192.168.3.72
+
+含义：
+102.168.2.62到本机socket，目标端口号9056，有30个连接
+本机到192.168.2.89的80端口有20个socket连接
+等等
+
+其它：
+常用端口被忽略不展示，比如22 ssh以及10050 zabbix agent
+
+建议：
+输入格式为mermaid，参考：https://mermaidjs.github.io/flowchart.html
+或者最简单的办法是放到网易云笔记中，以markdown格式保存
+形如：
+
+```
+graph LR
+	192.168.2.62-->|9056x30|search-front-php-01-vm
+ 	search-front-php-01-vm-->|80x20|192.168.2.89
+```
